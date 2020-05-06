@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+   <title>Productos</title>
+</head>
+<body>
+    <h1>Lista Productos</h1>
+    <table>
+        <thead>
+        <th>Nombre Producto</th>
+        <th>Cantidad Producto</th>
+        </thead>
+        <th:block th:each="product, row: ${productos}">
+            <tr>
+                <th th:text="${product.nombre}"></th>
+                <th th:text="${product.cantidad}"></th>
+            </tr>
+        </th:block>
+    </table>
+    <br>
+    <br>
+    <br>
+    
+    <h1>Comprar Producto</h1>
+ 	<form th:action="@{/validar}" method="post" th:object="${product}">
+	
+		<label>Producto: </label>
+		<th>
+			<select th:field="*{id}">
+				<option th:each="p : ${productos}" th:value="${p.id}" th:text="${p.nombre}"></option>
+			</select>
+		</th>
+		<br>
+		<input type="number" th:field="*{cantidad}">
+		<input type="submit" value="Comprar"/>
+	</form>
+</body>
+</html>
